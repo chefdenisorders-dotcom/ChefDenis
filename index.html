@@ -33,7 +33,7 @@
   </nav>
 
   <div class="cart-icon" onclick="toggleCart()">
-    🛒 <span id="cart-count">0</span>
+      🛒 <span id="cart-count">0</span>
   </div>
 </header>
 
@@ -44,6 +44,19 @@
   <p id="total">Total: 0 MDL</p>
   <button id="checkout-btn">Checkout</button>
 </div>
+
+<div id="checkout-modal">
+  <div class="checkout-content">
+    <span class="close-checkout">&times;</span>
+    <h2>Checkout</h2>
+    <p>Introdu emailul tău pentru confirmare:</p>
+    <input type="email" id="checkout-email" placeholder="Email" required>
+    <ul id="checkout-items"></ul>
+    <p id="checkout-total"></p>
+    <button id="confirm-checkout">Trimite Comanda</button>
+  </div>
+</div>
+
 
 <section class="hero">
   <div class="hero-overlay">
@@ -105,3 +118,4 @@
 <script src="js/javascript.js"></script>
 </body>
 </html>
+
