@@ -1156,34 +1156,48 @@ h1, h2, h3 {
   }
 
 }
-.qty-box {
-  display: flex;
-  flex-direction: column;   /* asta face coloana */
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr 90px 90px;
   align-items: center;
-  justify-content: center;
-  gap: 4px;
-  min-width: 40px;
+  gap: 10px;
+  padding: 10px 0;
 }
 
-.qty-box button {
-  width: 28px;
-  height: 28px;
+.item-name {
+  font-size: 16px;
+}
+
+.quantity-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.quantity-controls button {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   border: none;
-  background: #316c42;
-  color: #ffffff;
-  font-weight: bold;
-  border-radius: 6px;
+  background: #eee;
+  font-size: 18px;
   cursor: pointer;
   transition: 0.2s;
 }
 
-.qty-box button:hover {
-  background: #255533;
-  transform: scale(1.1);
+.quantity-controls button:hover {
+  background: #ddd;
 }
 
-.qty-box span {
-  font-weight: 700;
-  font-size: 15px;
-  color: #316c42;
+.quantity-number {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.item-price {
+  text-align: right;
+  font-weight: 500;
 }
