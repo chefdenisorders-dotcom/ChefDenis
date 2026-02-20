@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const productsData = {
     sandwich: [
-      { name: "Sandwich in asortiment", price: 35 },
+      { name: "Sandwich", price: 35 },
       { name: "Toast Sandwich", price: 30 },
       { name: "Panini Pizza", price: 22 },
       { name: "Hot Dog", price: 28 },
@@ -268,3 +268,4 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCart();
 });
 }
+
