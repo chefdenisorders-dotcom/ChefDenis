@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const revealElements = document.querySelectorAll(".reveal, .menu-block");
   function revealOnScroll() {
     revealElements.forEach(el => {
-      if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
+      if (el.getBoundingClientRect().top < window.innerHeight - 100)
+        el.classList.add("active");
     });
   }
   window.addEventListener("scroll", revealOnScroll);
@@ -90,33 +91,73 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartCount = document.getElementById("cart-count");
   const totalEl = document.getElementById("total");
 
-  function updateCart() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cartList.innerHTML = "";
-    let total = 0;
-    cart.forEach((item, index) => {
-      const li = document.createElement("li");
-      li.innerHTML = `${item.name} - ${item.price} MDL <button onclick="removeFromCart(${index})">❌</button>`;
-      cartList.appendChild(li);
-      total += item.price;
-    });
-    cartCount.innerText = cart.length;
-    totalEl.innerText = total;
+  function getCart() {
+    return JSON.parse(localStorage.getItem("cart")) || [];
   }
 
-  window.removeFromCart = function(index) {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.splice(index, 1);
+  function saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
-    updateCart();
   }
+
+  function groupCart(cart) {
+    const grouped = {};
+    cart.forEach(item => {
+      if (!grouped[item.name]) {
+        grouped[item.name] = { ...item, qty: 1 };
+      } else {
+        grouped[item.name].qty++;
+      }
+    });
+    return Object.values(grouped);
+  }
+
+  function updateCart() {
+    const cart = getCart();
+    const grouped = groupCart(cart);
+
+    cartList.innerHTML = "";
+    let total = 0;
+
+    grouped.forEach(item => {
+      const li = document.createElement("li");
+
+      li.innerHTML = `
+        ${item.name}
+        <div class="qty-box">
+          <button onclick="changeQty('${item.name}', -1)">➖</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty('${item.name}', 1)">➕</button>
+        </div>
+        ${item.price * item.qty} MDL
+      `;
+
+      cartList.appendChild(li);
+      total += item.price * item.qty;
+    });
+
+    cartCount.innerText = cart.length;
+    totalEl.innerText = `Total: ${total} MDL`;
+  }
+
+  window.changeQty = function(name, change) {
+    let cart = getCart();
+
+    if (change > 0) {
+      const item = cart.find(i => i.name === name);
+      if (item) cart.push(item);
+    } else {
+      const index = cart.findIndex(i => i.name === name);
+      if (index !== -1) cart.splice(index, 1);
+    }
+
+    saveCart(cart);
+    updateCart();
+  };
 
   window.toggleCart = function() {
     cartSidebar.classList.toggle("active");
     updateCart();
-  }
-
-  updateCart();
+  };
 
   function showNotification(message, color = "#316c42") {
     const notif = document.createElement("div");
@@ -124,6 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
     notif.style.background = color;
     notif.textContent = message;
     document.body.appendChild(notif);
+
     setTimeout(() => notif.classList.add("show"), 10);
     setTimeout(() => {
       notif.classList.remove("show");
@@ -136,11 +178,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const category = button.dataset.category;
       const index = button.dataset.index;
       const item = productsData[category][index];
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      const cart = getCart();
       cart.push(item);
-      localStorage.setItem("cart", JSON.stringify(cart));
+      saveCart(cart);
+
       updateCart();
-      showNotification("Produs adăugat în coș", "#316c42");
+      showNotification("Produs adăugat în coș");
     });
   });
 
@@ -151,56 +195,72 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeCheckout = document.querySelector(".close-checkout");
 
   checkoutBtn.addEventListener("click", () => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cart = getCart();
     if (!cart.length) return showNotification("Coșul este gol!", "#c0392b");
+
+    const grouped = groupCart(cart);
 
     checkoutItems.innerHTML = "";
     let total = 0;
-    cart.forEach(item => {
+
+    grouped.forEach(item => {
       const li = document.createElement("li");
-      li.textContent = `${item.name} - ${item.price} MDL`;
+
+      li.innerHTML = `
+        ${item.name}
+        <div class="qty-box">
+          <button onclick="changeQty('${item.name}', -1)">➖</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty('${item.name}', 1)">➕</button>
+        </div>
+        ${item.price * item.qty} MDL
+      `;
+
       checkoutItems.appendChild(li);
-      total += item.price;
+      total += item.price * item.qty;
     });
+
     checkoutTotal.textContent = `Total: ${total} MDL`;
     checkoutModal.style.display = "flex";
   });
 
   closeCheckout?.addEventListener("click", () => checkoutModal.style.display = "none");
+
   window.addEventListener("click", e => {
     if (e.target === checkoutModal) checkoutModal.style.display = "none";
   });
 
   const confirmCheckout = document.getElementById("confirm-checkout");
-  if (confirmCheckout) {
-    confirmCheckout.addEventListener("click", () => {
-      const email = document.getElementById("checkout-email").value.trim();
-      if (!email) return showNotification("Te rog introdu email-ul!", "#c0392b");
 
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      if (!cart.length) return showNotification("Coșul este gol!", "#c0392b");
+  confirmCheckout?.addEventListener("click", () => {
+    const email = document.getElementById("checkout-email").value.trim();
+    if (!email) return showNotification("Te rog introdu email-ul!", "#c0392b");
 
-      const total = cart.reduce((sum, item) => sum + item.price, 0);
-      const templateParams = {
-        to_email: email,
-        to_name: email.split("@")[0],
-        order_items: cart.map(i => `${i.name} - ${i.price} MDL`).join("\n"),
-        order_total: total
-      };
+    const cart = getCart();
+    if (!cart.length) return showNotification("Coșul este gol!", "#c0392b");
 
-      emailjs.send("service_gmxfrk6", "template_4npizju", templateParams, "euwpozbIhFNJwaNTd")
-        .then(() => {
-          showNotification("Comanda a fost trimisă!", "#316c42");
-          localStorage.removeItem("cart");
-          cartSidebar.classList.remove("active");
-          checkoutModal.style.display = "none";
-          cartCount.textContent = "0";
-        })
-        .catch(err => {
-          console.error("EmailJS error:", err);
-          showNotification("Eroare la trimiterea comenzii", "#c0392b");
-        });
-    });
-  }
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
 
+    const templateParams = {
+      to_email: email,
+      to_name: email.split("@")[0],
+      order_items: cart.map(i => `${i.name} - ${i.price} MDL`).join("\n"),
+      order_total: total
+    };
+
+    emailjs.send("service_gmxfrk6", "template_4npizju", templateParams, "euwpozbIhFNJwaNTd")
+      .then(() => {
+        showNotification("Comanda a fost trimisă!");
+        localStorage.removeItem("cart");
+        cartSidebar.classList.remove("active");
+        checkoutModal.style.display = "none";
+        cartCount.textContent = "0";
+        updateCart();
+      })
+      .catch(() => {
+        showNotification("Eroare la trimiterea comenzii", "#c0392b");
+      });
+  });
+
+  updateCart();
 });
