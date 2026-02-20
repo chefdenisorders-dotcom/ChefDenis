@@ -1157,23 +1157,24 @@ h1, h2, h3 {
 
 }
 .qty-box {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;   /* asta face coloana */
   align-items: center;
-  gap: 8px;
-  margin: 0 10px;
+  justify-content: center;
+  gap: 4px;
+  min-width: 40px;
 }
 
 .qty-box button {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border: none;
   background: #316c42;
-  color: #ffffff; /* text alb */
-  font-size: 18px;
+  color: #ffffff;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: 0.2s;
 }
 
 .qty-box button:hover {
@@ -1181,14 +1182,8 @@ h1, h2, h3 {
   transform: scale(1.1);
 }
 
-.qty-box button:active {
-  transform: scale(0.95);
-}
-
 .qty-box span {
-  min-width: 24px;
-  text-align: center;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 15px;
   color: #316c42;
 }
