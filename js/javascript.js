@@ -1,3 +1,6 @@
+if (window.location.pathname.includes("checkout")) {
+  console.log("Checkout page - quantity buttons disabled");
+} else {
 document.addEventListener("DOMContentLoaded", () => {
 
   const burger = document.querySelector(".burger");
@@ -264,3 +267,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateCart();
 });
+}
