@@ -1,8 +1,7 @@
-if (window.location.pathname.includes("checkout")) {
-  console.log("Checkout page - quantity buttons disabled");
-} else {
-document.addEventListener("DOMContentLoaded", () => {
 
+document.addEventListener("DOMContentLoaded", () => {
+const isCheckoutPage =
+  window.location.pathname.includes("checkout");
   const burger = document.querySelector(".burger");
   const nav = document.querySelector(".nav");
   if (burger && nav) {
@@ -124,16 +123,27 @@ document.addEventListener("DOMContentLoaded", () => {
     grouped.forEach(item => {
       const li = document.createElement("li");
 
-      li.innerHTML = `
-        ${item.name}
+li.innerHTML = `
+  <div class="cart-left">
+    <div class="cart-title">${item.name}</div>
+
+    ${
+      isCheckoutPage
+        ? `<span class="qty-static">${item.qty}x</span>`
+        : `
         <div class="qty-box">
           <button onclick="changeQty('${item.name}', -1)">➖</button>
           <span>${item.qty}</span>
           <button onclick="changeQty('${item.name}', 1)">➕</button>
         </div>
-        ${item.price * item.qty} MDL
-      `;
+      `
+    }
+  </div>
 
+  <div class="cart-price">
+    ${item.price * item.qty} MDL
+  </div>
+`;
       cartList.appendChild(li);
       total += item.price * item.qty;
     });
@@ -267,5 +277,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateCart();
 });
-}
+
 
