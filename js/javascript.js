@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
 const isCheckoutPage =
   window.location.pathname.includes("checkout");
@@ -132,9 +131,9 @@ li.innerHTML = `
         ? `<span class="qty-static">${item.qty}x</span>`
         : `
         <div class="qty-box">
-          <button onclick="changeQty('${item.name}', -1)">➖</button>
+          <button onclick="changeQty('${item.name}', -1)">-</button>
           <span>${item.qty}</span>
-          <button onclick="changeQty('${item.name}', 1)">➕</button>
+          <button onclick="changeQty('${item.name}', 1)">+</button>
         </div>
       `
     }
@@ -220,14 +219,15 @@ li.innerHTML = `
       const li = document.createElement("li");
 
       li.innerHTML = `
-        ${item.name}
-        <div class="qty-box">
-          <button onclick="changeQty('${item.name}', -1)">➖</button>
-          <span>${item.qty}</span>
-          <button onclick="changeQty('${item.name}', 1)">➕</button>
-        </div>
-        ${item.price * item.qty} MDL
-      `;
+  <div class="cart-left">
+    <div class="cart-title">${item.name}</div>
+    <span class="qty-static">${item.qty}x</span>
+  </div>
+
+  <div class="cart-price">
+    ${item.price * item.qty} MDL
+  </div>
+`;
 
       checkoutItems.appendChild(li);
       total += item.price * item.qty;
@@ -277,5 +277,3 @@ li.innerHTML = `
 
   updateCart();
 });
-
-
