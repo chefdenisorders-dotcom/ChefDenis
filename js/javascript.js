@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const productsData = {
     sandwich: [
-      { name: "Sandwich in asortiment", price: 35 },
+      { name: "Sandwichuri", price: 35 },
       { name: "Toast Sandwich", price: 30 },
       { name: "Panini Pizza", price: 22 },
       { name: "Hot Dog", price: 28 },
       { name: "Croisant cu curcan", price: 38 },
-      { name: "Pitta cu pui crispy", price: 40 }
+      { name: "Pitta cu pui", price: 40 }
     ],
     wrap: [
       { name: "Placinta cu carne", price: 22 },
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     salate: [
       { name: "Salata Caesar", price: 35 },
       { name: "Salata Greceasca", price: 35 },
-      { name: "Salata cu sunca vita", price: 35 }
+      { name: "Salata cu vita", price: 35 }
     ],
     burger: [
       { name: "Cheeseburger", price: 35 },
@@ -264,3 +264,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateCart();
 });
+
