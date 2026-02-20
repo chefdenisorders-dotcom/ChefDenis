@@ -47,41 +47,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const productsData = {
     sandwich: [
-      { name: "Sandwichuri‎ ‎ ‎ ‎ ‎ ‎ ‎ ", price: 35 },
-      { name: "Toast Sandwichv‎ ‎ ‎ ", price: 30 },
-      { name: "Panini Pizza‎ ‎ ‎ ‎ ‎ ‎ ", price: 22 },
-      { name: "Hot Dog‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ", price: 28 },
+      { name: "Sandwich in asortiment", price: 35 },
+      { name: "Toast Sandwich", price: 30 },
+      { name: "Panini Pizza", price: 22 },
+      { name: "Hot Dog", price: 28 },
       { name: "Croisant cu curcan", price: 38 },
-      { name: "Pitta cu pui‎ ‎ ‎ ‎ ‎ ‎ ", price: 40 }
+      { name: "Pitta cu pui crispy", price: 40 }
     ],
     wrap: [
-      { name: "Placinta cu carne‎ ", price: 22 },
+      { name: "Placinta cu carne", price: 22 },
       { name: "Placinta cu branza", price: 20 },
-      { name: "Placinta cu varza‎ ", price: 17 },
-      { name: "Wrap de Pui‎ ‎ ‎ ‎ ‎ ‎ ‎ ",‎ price: 37 }
+      { name: "Placinta cu varza", price: 17 },
+      { name: "Wrap de Pui", price: 37 }
     ],
-    salate: [‎ 
-      { name: "Salata Caesar‎ ‎ ‎ ‎ ‎ ", price: 35 },
-      { name: "Salata Greceasca‎ ‎ ", price: 35 },
-      { name: "Salata cu vita‎ ‎ ‎ ‎ ", price‎: 35 }
+    salate: [
+      { name: "Salata Caesar", price: 35 },
+      { name: "Salata Greceasca", price: 35 },
+      { name: "Salata cu sunca vita", price: 35 }
     ],
     burger: [
-      { name: "Cheeseburger‎ ‎ ‎ ‎ ‎ ‎ ", price: 35 },
-      { name: "Burger vita/porc‎‎  ", price: 35 }
+      { name: "Cheeseburger", price: 35 },
+      { name: "Burger vita/porc", price: 35 }
     ],
     reci: [
-      { name: "Coca cola‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ", price: 20 },
-      { name: "Sprite‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ", price: 20 },
-      { name: "Fanta‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ", price: 20 },
-      { name: "Apa‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ", price: 15 },
-      { name: "Fuze Tea‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ", price: 23 }
+      { name: "Coca cola", price: 20 },
+      { name: "Sprite", price: 20 },
+      { name: "Fanta", price: 20 },
+      { name: "Apa", price: 15 },
+      { name: "Fuze Tea", price: 23 }
     ],
     calde: [
-      { name: "Espresso‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ", price: 20 },
-      { name: "Americano‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ", price: 20 },
-      { name: "Cappuccino‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ", price: 24 },
-      { name: "Latte‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ", price: 25 },
-      { name: "Ciocolata Calda‎ ‎ ‎ ", price: 20 },
+      { name: "Espresso", price: 20 },
+      { name: "Americano", price: 20 },
+      { name: "Cappuccino", price: 24 },
+      { name: "Latte", price: 25 },
+      { name: "Ciocolata Fierbinte", price: 20 },
       { name: "Ceai", price: 15 }
     ]
   };
@@ -264,5 +264,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateCart();
 });
-
-
