@@ -488,7 +488,14 @@ h1, h2, h3 {
   border-radius: 20px;
   align-items: center;
 }
+.location-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.location-card:hover {
+  transform: scale(1.03); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
+}
 .location-card img {
   width: 160px;
   height: 120px;
@@ -917,7 +924,7 @@ h1, h2, h3 {
   position: fixed;
   top: 0;
   right: -350px;         
-  width: 380px;
+  width: 350px;
   height: 100%;
   background: #fff;
   box-shadow: -5px 0 15px rgba(0,0,0,0.2);
@@ -1154,7 +1161,6 @@ h1, h2, h3 {
     width: 80%; 
     max-width: 300px; 
   }
-
 }
 .cart-item,
 #cart-list li {
@@ -1197,9 +1203,3 @@ h1, h2, h3 {
   font-weight: 600;
   opacity: 0.7;
 }
-
-
-
-
-
-
