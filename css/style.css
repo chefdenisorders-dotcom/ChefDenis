@@ -483,7 +483,7 @@ h1, h2, h3 {
   display: flex;
   gap: 25px;
   margin-bottom: 40px;
-  background: #D3D3D3;
+  background: #e8e8e8;
   padding: 20px;
   border-radius: 20px;
   align-items: center;
@@ -1197,6 +1197,7 @@ h1, h2, h3 {
   font-weight: 600;
   opacity: 0.7;
 }
+
 
 
 
