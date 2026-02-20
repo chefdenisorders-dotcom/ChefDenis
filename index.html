@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Chef Denis</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Chef Denis - Sandwichuri, burgeri, cafea și băuturi în Moldova. Produse proaspete zilnic.">
+<meta name="keywords" content="sandwich Moldova, burger Moldova, cafea Moldova, fast food Moldova, Chef Denis">
+<meta name="author" content="Chef Denis">
+</head>
+<body>
+
+
+<header class="header">
+  <div class="logo">
+    <img src="../images/logo.jpg" alt="Chef Denis Logo">
+    <span>Chef Denis</span>
+  </div>
+
+  <div class="burger">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  
+  <nav class="nav">
+    <a href="../index.html">Home</a>
+    <a href="/pagini/menu.html">Meniu</a>
+    <a href="/pagini/locatii.html">Locații</a>
+    <a href="/pagini/contact.html">Contact</a>
+  </nav>
+
+  <div class="cart-icon" onclick="toggleCart()">
+    🛒 <span id="cart-count">0</span>
+  </div>
+</header>
+<div class="cart-sidebar" id="cart-sidebar">
+  <span class="close-cart" onclick="toggleCart()">×</span>
+  <h2>Coșul tău</h2>
+  <ul id="cart-list"></ul>
+  <p id="total">Total: 0 MDL</p>
+  <button id="checkout-btn">Checkout</button>
+</div>
+<section class="hero">
+  <div class="hero-overlay">
+    <div class="hero-text reveal">
+      <h1>Gustos gătit de un adevărat Chef</h1>
+      <p>Sandvișuri • Cafea • Deserturi</p>
+      <a href="/pagini/menu.html" class="btn">Vezi Meniul</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="home-features">
+  <div class="features-container">
+
+    <div class="features-text">
+      <h2>De Ce Chef Denis?</h2>
+
+      <div class="feature-item">
+        <h3>Ingrediente Proaspete</h3>
+        <p>Folosim doar produse atent selecționate zilnic.</p>
+      </div>
+
+      <div class="feature-item">
+        <h3>Gust Autentic</h3>
+        <p>Rețete create cu pasiune și experiență.</p>
+      </div>
+
+      <div class="feature-item">
+        <h3>Atmosferă Modernă</h3>
+        <p>Un loc perfect pentru o pauză delicioasă.</p>
+      </div>
+    </div>
+
+    <div class="features-image">
+      <img src="images/restaurant.jpg" alt="Chef Denis">
+    </div>
+
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <h3>Chef Denis</h3>
+      <p>Sandvișuri • Cafea • Deserturi</p>
+    </div>
+
+    <div class="footer-social">
+      <a href="https://www.facebook.com/chef.denis.md/" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/chef_denis_kitchen/?hl=en" target="_blank">Instagram</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Chef Denis.
+  </div>
+</footer>
+
+<script src="/js/javascript.js"></script>
+</body>
+</html>
