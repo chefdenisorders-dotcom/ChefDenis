@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-const isCheckoutPage =
-  window.location.pathname.includes("checkout");
+  const isCheckoutPage =
+    window.location.pathname.includes("checkout");
   const burger = document.querySelector(".burger");
   const nav = document.querySelector(".nav");
   if (burger && nav) {
@@ -33,15 +33,11 @@ const isCheckoutPage =
       const isActive = products.classList.contains("active");
 
       document.querySelectorAll(".products").forEach(p => p.classList.remove("active"));
-      document.querySelectorAll(".toggle-products").forEach(b => {
-        b.classList.remove("active");
-        b.innerHTML = 'Vezi Produsele <span class="arrow">▼</span>';
-      });
+      document.querySelectorAll(".toggle-products").forEach(b => b.classList.remove("active"));
 
       if (!isActive) {
         products.classList.add("active");
         button.classList.add("active");
-        button.innerHTML = 'Închide Produsele <span class="arrow">▼</span>';
       }
     });
   });
@@ -122,27 +118,27 @@ const isCheckoutPage =
     grouped.forEach(item => {
       const li = document.createElement("li");
 
-li.innerHTML = `
-  <div class="cart-left">
-    <div class="cart-title">${item.name}</div>
+      li.innerHTML = `
+        <div class="cart-left">
+          <div class="cart-title">${item.name}</div>
 
-    ${
-      isCheckoutPage
-        ? `<span class="qty-static">${item.qty}x</span>`
-        : `
-        <div class="qty-box">
-          <button onclick="changeQty('${item.name}', -1)">-</button>
-          <span>${item.qty}</span>
-          <button onclick="changeQty('${item.name}', 1)">+</button>
+          ${
+            isCheckoutPage
+              ? `<span class="qty-static">${item.qty}x</span>`
+              : `
+                <div class="qty-box">
+                  <button onclick="changeQty('${item.name}', -1)">-</button>
+                  <span>${item.qty}</span>
+                  <button onclick="changeQty('${item.name}', 1)">+</button>
+                </div>
+              `
+          }
         </div>
-      `
-    }
-  </div>
 
-  <div class="cart-price">
-    ${item.price * item.qty} MDL
-  </div>
-`;
+        <div class="cart-price">
+          ${item.price * item.qty} MDL
+        </div>
+      `;
       cartList.appendChild(li);
       total += item.price * item.qty;
     });
@@ -219,15 +215,15 @@ li.innerHTML = `
       const li = document.createElement("li");
 
       li.innerHTML = `
-  <div class="cart-left">
-    <div class="cart-title">${item.name}</div>
-    <span class="qty-static">${item.qty}x</span>
-  </div>
+        <div class="cart-left">
+          <div class="cart-title">${item.name}</div>
+          <span class="qty-static">${item.qty}x</span>
+        </div>
 
-  <div class="cart-price">
-    ${item.price * item.qty} MDL
-  </div>
-`;
+        <div class="cart-price">
+          ${item.price * item.qty} MDL
+        </div>
+      `;
 
       checkoutItems.appendChild(li);
       total += item.price * item.qty;
@@ -271,9 +267,36 @@ li.innerHTML = `
         updateCart();
       })
       .catch(() => {
-        showNotification("Eroare la trimiterea comenzii", "#c0392b");
+        showNotification("Emailul introdus nu există", "#c0392b");
       });
   });
 
   updateCart();
+});
+
+window.openLocations = function(city) {
+  const popup = document.getElementById("locations-popup");
+
+  if (!popup) return;
+
+  popup.style.display = "flex";
+
+  document.querySelectorAll(".city-locations").forEach(el => {
+    el.style.display = "none";
+  });
+
+  const selected = document.getElementById(city);
+  if (selected) selected.style.display = "block";
+};
+
+window.closeLocations = function() {
+  const popup = document.getElementById("locations-popup");
+  if (popup) popup.style.display = "none";
+};
+
+window.addEventListener("click", function(e) {
+  const popup = document.getElementById("locations-popup");
+  if (e.target === popup) {
+    popup.style.display = "none";
+  }
 });
