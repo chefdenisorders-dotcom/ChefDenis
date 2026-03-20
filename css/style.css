@@ -316,6 +316,47 @@ h1, h2, h3 {
   }
 }
 @media (max-width: 768px) {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    position: relative;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .burger {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .burger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    transition: 0.4s;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .cart-icon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}
+@media (max-width: 768px) {
 
   .burger { display: block; }
 
@@ -566,6 +607,7 @@ html, body {
   .city-left h1 {
     color: white;
     margin: 0 0 20px 0;
+    text-align: center;
   }
 
   .city-btn {
@@ -753,6 +795,29 @@ html, body {
     display: flex;
   }
 }
+@media (max-width: 768px) {
+  .nav {
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    display: none; 
+    padding: 16px 0;
+    background: rgba(255, 255, 255, 0.7); 
+    backdrop-filter: blur(5px); 
+    z-index: 999;
+  }
+
+  .nav.show {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 8px 16px;
+  }
+}
+
 .hero2 {
   position: relative;
   display: flex;
@@ -1091,7 +1156,23 @@ html, body {
   align-items: center;
   z-index: 3000;
 }
+#cancel-order {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #c0392b;
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: 0.3s;
+}
 
+#cancel-order:hover {
+  background-color: #a93226;
+}
 .checkout-content {
   background: #fff;
   padding: 30px;
