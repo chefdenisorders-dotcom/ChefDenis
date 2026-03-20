@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Locații - Chef Denis</title>
   <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Locațiile Chef Denis din Moldova. Sandwichuri, burgeri și cafea proaspătă zilnic în Ialoveni și Chișinău.">
   <meta name="keywords" content="Chef Denis locații, sandwich Ialoveni, burger Chișinău, cafea Moldova">
@@ -13,12 +14,11 @@
 
 <header class="header">
   <div class="logo">
-   <a href="../index.html"><img src="../images/logo.jpg" alt="Chef Denis Logo"></a>
+    <img src="../images/logo.jpg" alt="Chef Denis Logo">
     <span>Chef Denis</span>
   </div>
 
   <div class="burger">
-    <div></div>
     <div></div>
     <div></div>
     <div></div>
@@ -56,65 +56,103 @@
   </div>
 </div>
 
-<section class="locations-section">
-  <h1>Locațiile Noastre</h1>
+<section class="locations-section hero3 fade-in">
 
-  <div class="location-card">
-    <img src="../images/location1.jpg" alt="Chef Denis Ialoveni Basarabia">
-    <div class="location-info">
-      <h3>Ialoveni – Str. Basarabia 4</h3>
-      <h4>Program: 08:00 - 18:00</h4>
-      <h4>Luni - Vineri</h4>
-      <iframe src="https://www.google.com/maps?q=Strada+Basarabia+4+Ialoveni&output=embed"></iframe>
-    </div>
+
+
+  <div class="city-left">
+    <h1>Selectează Orașul</h1>
+
+   <button onclick="openLocations('chisinau')" class="city-btn">Chișinău</button>
+   <button onclick="openLocations('ialoveni')" class="city-btn">Ialoveni</button>
   </div>
-
-  <div class="location-card">
-    <img src="../images/location2.jpg" alt="Chef Denis Alexandru cel Bun">
-    <div class="location-info">
-      <h3>Ialoveni – Str. Alexandru cel Bun 84</h3>
-      <h4>Program: 08:00 - 18:00</h4>
-      <h4>Luni - Vineri</h4>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2723.7749174170335!2d28.771625212336357!3d46.946462733208726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97f45c6656139%3A0x252fdbdde602c4bf!2sChef%20Denis!5e0!3m2!1sen!2s!4v1771421658426!5m2!1sen!2s"></iframe>
-    </div>
-  </div>
-
-  <div class="location-card">
-    <img src="../images/location3.jpg" alt="Chef Denis Buiucani">
-    <div class="location-info">
-      <h3>Buiucani – Ion Pelivan 32/2</h3>
-      <h4>Program: 07:30 - 18:00</h4>
-      <h4>Luni - Vineri</h4>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5439.379335733057!2d28.776408877709954!3d47.02669619999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97d58001de9bf%3A0xaa6d3e866422acbf!2sChef%20Denis!5e0!3m2!1sen!2sus!4v1771422618393!5m2!1sen!2sus"></iframe>
-    </div>
-  </div>
-
-  <div class="location-card">
-    <img src="../images/location4.jpg" alt="Chef Denis Botanica Dacia 4">
-    <div class="location-info">
-      <h3>Botanica – Str. Dacia 4</h3>
-      <h4>Program: 07:30 - 18:00</h4>
-      <h4>Luni - Vineri</h4>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3632.7327403107483!2d28.84253417379145!3d46.99165438915394!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97f00045b4819%3A0x46e7af6886da2238!2sChef%20Denis!5e0!3m2!1sen!2sus!4v1771423016124!5m2!1sen!2sus"></iframe>
-    </div>
-  </div>
-
-  <div class="location-card">
-    <img src="../images/location5.jpg" alt="Chef Denis Botanica Dacia 18">
-    <div class="location-info">
-      <h3>Botanica – Str. Dacia 18</h3>
-      <h4>Program: 07:30 - 18:00</h4>
-      <h4>Luni - Vineri</h4>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10886.606773805128!2d28.835161355419913!3d46.988175500000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97fbf405f989f%3A0x53588d6fb1477d9b!2sChef%20Denis!5e0!3m2!1sen!2sus!4v1771422827629!5m2!1sen!2sus"></iframe>
-    </div>
-  </div>
-
 </section>
 
+
+<div class="locations-popup" id="locations-popup">
+  <div class="popup-content">
+
+    <span class="close-popup" onclick="closeLocations()">×</span>
+
+    <div id="ialoveni" class="city-locations">
+
+      <div class="location-card">
+        <img src="../images/location1.jpg">
+        <div class="location-info">
+          <h3>Ialoveni – Str. Basarabia 4</h3>
+          <h4>08:00 - 18:00</h4>
+          <h4>Luni - Vineri</h4>
+          <iframe src="https://www.google.com/maps?q=Strada+Basarabia+4+Ialoveni&output=embed"></iframe>
+        </div>
+      </div>
+
+      <div class="location-card">
+        <img src="../images/location2.jpg">
+        <div class="location-info">
+          <h3>Ialoveni – Str. Alexandru cel Bun 84</h3>
+          <h4>08:00 - 18:00</h4>
+          <h4>Luni - Vineri</h4>
+          <iframe src="https://www.google.com/maps?q=Alexandru+cel+Bun+84+Ialoveni&output=embed"></iframe>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="chisinau" class="city-locations">
+
+      <div class="location-card">
+        <img src="../images/location3.jpg">
+        <div class="location-info">
+          <h3>Buiucani – Ion Pelivan 32/2</h3>
+          <h4>07:30 - 18:00</h4>
+          <h4>Luni - Vineri</h4>
+          <iframe src="https://www.google.com/maps?q=Ion+Pelivan+32+Chisinau&output=embed"></iframe>
+        </div>
+      </div>
+
+      <div class="location-card">
+        <img src="../images/location4.jpg">
+        <div class="location-info">
+          <h3>Botanica – Str. Dacia 4</h3>
+          <h4>07:30 - 18:00</h4>
+          <h4>Luni - Vineri</h4>
+          <iframe src="https://www.google.com/maps?q=Dacia+4+Chisinau&output=embed"></iframe>
+        </div>
+      </div>
+
+      <div class="location-card">
+        <img src="../images/location5.jpg">
+        <div class="location-info">
+          <h3>Botanica – Str. Dacia 18</h3>
+          <h4>07:30 - 18:00</h4>
+          <h4>Luni - Vineri</h4>
+          <iframe src="https://www.google.com/maps?q=Dacia+18+Chisinau&output=embed"></iframe>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
 <footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <h3>Chef Denis</h3>
+      <p>Sandvișuri • Cafea • Deserturi</p>
+    </div>
+
+    <div class="footer-social">
+      <a href="https://www.facebook.com/chef.denis.md/" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/chef_denis_kitchen/?hl=en" target="_blank">Instagram</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
    Acest website a fost realizat în cadrul
 competiției „Tekwill Junior Ambassadors” organizată de proiectul „Tekwill în Fiecare
 Școală” și nu reflectă neapărat opinia proiectului.
+  </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
@@ -125,10 +163,3 @@ competiției „Tekwill Junior Ambassadors” organizată de proiectul „Tekwil
 <script src="../js/javascript.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
