@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
       saveCart(cart);
 
       updateCart();
-      showNotification("Produs adăugat în coș");
+      showNotification("adăugat în coș");
     });
   });
 
@@ -232,7 +232,20 @@ document.addEventListener("DOMContentLoaded", () => {
     checkoutTotal.textContent = `Total: ${total} MDL`;
     checkoutModal.style.display = "flex";
   });
+  const cancelBtn = document.getElementById("cancel-order");
 
+  cancelBtn?.addEventListener("click", () => {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  if (!cart.length) {
+    showNotification("Coșul este gol!", "#c0392b");
+    return;
+  }
+  localStorage.removeItem("cart");
+  updateCart();
+  const checkoutModal = document.getElementById("checkout-modal");
+  if (checkoutModal) checkoutModal.style.display = "none";
+  showNotification("Anulat!", "#c0392b");
+  });
   closeCheckout?.addEventListener("click", () => checkoutModal.style.display = "none");
 
   window.addEventListener("click", e => {
