@@ -45,7 +45,14 @@ h1, h2, h3 {
   color: #316c42;
   letter-spacing: 1px;
 }
+.logo img {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
 
+.logo:hover img {
+  transform: scale(1.08);
+  filter: brightness(0.85);
+}
 .nav {
   display: flex;
   align-items: center;
