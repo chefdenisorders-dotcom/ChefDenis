@@ -3,99 +3,190 @@
 <head>
   <meta charset="UTF-8">
   <title>Chef Denis</title>
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
   <link rel="stylesheet" href="css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <meta name="description" content="Chef Denis - Sandwichuri, burgeri, cafea și băuturi în Moldova. Produse proaspete zilnic.">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Chef Denis - sandwichuri, burgeri, cafea și băuturi în Moldova. Produse proaspete zilnic.">
   <meta name="keywords" content="sandwich Moldova, burger Moldova, cafea Moldova, fast food Moldova, Chef Denis">
   <meta name="author" content="Chef Denis">
 </head>
 <body>
 
 <header class="header">
-<div class="logo">
-    <a href="index.html">
+  <div class="logo">
+    <a href="index.html" class="brand-link">
       <img src="images/logo.png" alt="Chef Denis Logo">
+      <span>Chef Denis</span>
     </a>
-    <span>Chef Denis</span>
   </div>
 
   <div class="burger">
     <div></div>
-    <div></div>
-    <div></div>
   </div>
-  
+
   <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="pagini/menu.html">Meniu</a>
-    <a href="pagini/locatii.html">Locații</a>
-    <a href="pagini/contact.html">Contact</a>
+    <a href="pagini/menu.html" data-i18n="nav.menu">Meniu</a>
+    <a href="pagini/locatii.html" data-i18n="nav.locations">Locații</a>
+    <a href="pagini/contact.html" data-i18n="nav.contact">Contact</a>
   </nav>
 
-  <div class="cart-icon" onclick="toggleCart()">
-      🛒 <span id="cart-count">0</span>
+  <div class="header-actions">
+    <select class="language-select" id="language-select" aria-label="Language">
+      <option value="ro">RO</option>
+      <option value="en">EN</option>
+      <option value="ru">RU</option>
+    </select>
+    <button class="cart-icon" type="button" onclick="toggleCart()" aria-label="Cart">
+      <span class="cart-symbol">&#128722;</span> <span id="cart-count">0</span>
+    </button>
   </div>
 </header>
 
 <div class="cart-sidebar" id="cart-sidebar">
-  <span class="close-cart" onclick="toggleCart()">×</span>
-  <h2>Coșul tău</h2>
+  <span class="close-cart" onclick="toggleCart()">&times;</span>
+  <h2 data-i18n="cart.title">Coșul tău</h2>
   <ul id="cart-list"></ul>
   <p id="total">Total: 0 MDL</p>
-  <button id="checkout-btn">Checkout</button>
- <button id="cancel-order">Anulează comanda</button>
+  <button id="checkout-btn" data-i18n="cart.checkout">Finalizează comanda</button>
+  <button id="cancel-order" data-i18n="cart.cancel">Anulează comanda</button>
 </div>
 
 <div id="checkout-modal">
   <div class="checkout-content">
     <span class="close-checkout">&times;</span>
-    <h2>Checkout</h2>
-    <p>Introdu emailul tău pentru confirmare:</p>
-    <input type="email" id="checkout-email" placeholder="Email" required>
+    <h2 data-i18n="checkout.title">Date pentru comandă</h2>
+    <p data-i18n="checkout.intro">Completează datele de mai jos pentru confirmare.</p>
+    <form id="checkout-form">
+      <input type="email" id="checkout-email" placeholder="Email" data-i18n-placeholder="checkout.email" required>
+      <select id="checkout-fulfillment" required>
+        <option value="pickup" data-i18n="checkout.pickup">Pickup</option>
+        <option value="delivery" data-i18n="checkout.delivery">Livrare</option>
+      </select>
+      <select id="checkout-city" required>
+        <option value="" data-i18n="checkout.cityPlaceholder">Alege orașul</option>
+        <option value="Chișinău">Chișinău</option>
+        <option value="Ialoveni">Ialoveni</option>
+      </select>
+      <input type="text" id="checkout-street" list="moldova-streets" placeholder="Strada și numărul" data-i18n-placeholder="checkout.street" class="checkout-delivery-field">
+      <datalist id="moldova-streets">
+        <option value="Str. Ștefan cel Mare și Sfânt">
+        <option value="Bd. Dacia">
+        <option value="Bd. Decebal">
+        <option value="Str. București">
+        <option value="Str. Ismail">
+        <option value="Str. Alexandru cel Bun">
+        <option value="Str. Basarabia">
+        <option value="Str. Ion Creangă">
+        <option value="Str. Alba Iulia">
+        <option value="Str. Ion Pelivan">
+        <option value="Str. Mihai Eminescu">
+        <option value="Str. Vasile Alecsandri">
+      </datalist>
+      <select id="checkout-location" class="checkout-pickup-field" required>
+        <option value="" data-i18n="checkout.locationPlaceholder">Alege locația pentru pickup</option>
+        <option value="Ialoveni - Str. Basarabia 4">Ialoveni - Str. Basarabia 4</option>
+        <option value="Ialoveni - Str. Alexandru cel Bun 84">Ialoveni - Str. Alexandru cel Bun 84</option>
+        <option value="Chișinău - Ion Pelivan 32/2">Chișinău - Ion Pelivan 32/2</option>
+        <option value="Chișinău - Str. Dacia 4">Chișinău - Str. Dacia 4</option>
+        <option value="Chișinău - Str. Dacia 18">Chișinău - Str. Dacia 18</option>
+      </select>
+      <textarea id="checkout-comment" rows="4" placeholder="Comentariu pentru comandă (opțional)" data-i18n-placeholder="checkout.comment"></textarea>
+    </form>
     <ul id="checkout-items"></ul>
     <p id="checkout-total"></p>
-    <button id="confirm-checkout">Trimite Comanda</button>
+    <button id="confirm-checkout" data-i18n="checkout.send">Trimite comanda</button>
   </div>
 </div>
 
-
 <section class="hero fade-in">
-  <div class="hero-overlay">
+  <div class="hero-overlay home-hero-layout">
     <div class="hero-text reveal">
-      <h1>Gustos gătit de un adevărat Chef</h1>
-      <p>Sandvișuri • Cafea • Deserturi</p>
-      <a href="pagini/menu.html" class="btn">Vezi Meniul</a>
+      <p class="hero-eyebrow">Chef Denis kitchen</p>
+      <h1 data-i18n="home.heroTitle">Gustos gătit de un adevărat chef</h1>
+      <p data-i18n="home.heroSubtitle">Sandvișuri &bull; Cafea &bull; Deserturi</p>
+      <a href="pagini/menu.html" class="btn" data-i18n="home.heroButton">Vezi meniul</a>
     </div>
   </div>
 </section>
 
-<section class="home-features">
-  <div class="features-container">
-
-    <div class="features-text">
-      <h2>De Ce Chef Denis?</h2>
-
-      <div class="feature-item">
-        <h3>Ingrediente Proaspete</h3>
-        <p>Folosim doar produse atent selecționate zilnic.</p>
+<section class="popular-preview">
+  <div class="section-heading">
+    <p data-i18n="home.popularEyebrow">Alegeri populare</p>
+    <h2 data-i18n="home.popularTitle">Gustări care merg oricând</h2>
+  </div>
+  <div class="popular-grid">
+    <details class="popular-card popular-choice">
+      <summary>
+        <img src="images/sandwich.jpg" alt="Sandwich Chef Denis">
+        <div>
+          <h3 data-i18n="home.popularSandwich">Sandwichuri</h3>
+          <p data-i18n="home.popularSandwichText">Simple, rapide și consistente.</p>
+          <strong>35 MDL</strong>
+        </div>
+      </summary>
+      <div class="popular-order-panel">
+        <p>Alege rapid un produs popular:</p>
+        <button class="add-cart-btn" data-category="sandwich" data-index="0"><span data-product-name="sandwich.0">Sandwich</span><span>35 MDL</span></button>
+        <button class="add-cart-btn" data-category="sandwich" data-index="1"><span data-product-name="sandwich.1">Toast Sandwich</span><span>30 MDL</span></button>
       </div>
-
-      <div class="feature-item">
-        <h3>Gust Autentic</h3>
-        <p>Rețete create cu pasiune și experiență.</p>
+    </details>
+    <details class="popular-card popular-choice">
+      <summary>
+        <img src="images/burger.jpg" alt="Burger Chef Denis">
+        <div>
+          <h3 data-i18n="home.popularBurger">Burgeri</h3>
+          <p data-i18n="home.popularBurgerText">Gust bogat, pregătit pe loc.</p>
+          <strong>35 MDL</strong>
+        </div>
+      </summary>
+      <div class="popular-order-panel">
+        <p>Alege rapid un burger:</p>
+        <button class="add-cart-btn" data-category="burger" data-index="0"><span data-product-name="burger.0">Cheeseburger</span><span>35 MDL</span></button>
+        <button class="add-cart-btn" data-category="burger" data-index="1"><span data-product-name="burger.1">Burger vită/porc</span><span>35 MDL</span></button>
       </div>
-
-      <div class="feature-item">
-        <h3>Atmosferă Modernă</h3>
-        <p>Un loc perfect pentru o pauză delicioasă.</p>
+    </details>
+    <details class="popular-card popular-choice">
+      <summary>
+        <img src="images/bauturi.jpg" alt="Cafea Chef Denis">
+        <div>
+          <h3 data-i18n="home.popularCoffee">Cafea</h3>
+          <p data-i18n="home.popularCoffeeText">Pentru pauze scurte și dimineți bune.</p>
+          <strong>20 MDL</strong>
+        </div>
+      </summary>
+      <div class="popular-order-panel">
+        <p>Alege rapid o băutură caldă:</p>
+        <button class="add-cart-btn" data-category="calde" data-index="1"><span data-product-name="calde.1">Americano</span><span>20 MDL</span></button>
+        <button class="add-cart-btn" data-category="calde" data-index="2"><span data-product-name="calde.2">Cappuccino</span><span>24 MDL</span></button>
       </div>
-    </div>
+    </details>
+  </div>
+</section>
 
-    <div class="features-image">
-      <img src="images/restaurant.jpg" alt="Chef Denis">
-    </div>
-
+<section class="brand-showcase">
+  <div class="showcase-copy">
+    <h2 class="why-heading" data-i18n="home.showcaseEyebrow">De ce Chef Denis </h2>
+    <ul class="why-list" aria-label="De ce Chef Denis">
+      <li>
+        <strong data-i18n="home.featureFreshTitle">Făcut zilnic</strong>
+        <span data-i18n="home.featureFreshText">Produse calde și ingrediente simple.</span>
+      </li>
+      <li>
+        <strong data-i18n="home.featureTasteTitle">Ridicare rapidă</strong>
+        <span data-i18n="home.featureTasteText">Comanzi și ridici din locație.</span>
+      </li>
+      <li>
+        <strong data-i18n="home.featurePlaceTitle">Chișinău și Ialoveni</strong>
+        <span data-i18n="home.featurePlaceText">Locații active și program clar.</span>
+      </li>
+    </ul>
+  </div>
+  <div class="showcase-images">
+    <img src="images/restaurant.jpg" alt="Interior Chef Denis">
+    <img src="images/wrap.jpg" alt="Wrap Chef Denis">
+    <img src="images/reci.jpg" alt="Băuturi Chef Denis">
   </div>
 </section>
 
@@ -103,27 +194,45 @@
   <div class="footer-content">
     <div class="footer-brand">
       <h3>Chef Denis</h3>
-      <p>Sandvișuri • Cafea • Deserturi</p>
+      <p data-i18n="footer.tagline">Sandvișuri &bull; Cafea &bull; Deserturi pregătite zilnic.</p>
     </div>
 
-    <div class="footer-social">
-      <a href="https://www.facebook.com/chef.denis.md/" target="_blank">Facebook</a>
-      <a href="https://www.instagram.com/chef_denis_kitchen/?hl=en" target="_blank">Instagram</a>
+    <div class="footer-column">
+      <h4 data-i18n="footer.navigation">Navigare</h4>
+      <a href="pagini/menu.html" data-i18n="nav.menu">Meniu</a>
+      <a href="pagini/locatii.html" data-i18n="nav.locations">Locații</a>
+      <a href="pagini/contact.html" data-i18n="nav.contact">Contact</a>
+    </div>
+
+    <div class="footer-column">
+      <h4 data-i18n="footer.contact">Contact rapid</h4>
+      <a href="tel:+37362099657">062 099 657</a>
+      <a href="tel:+37369563730">069 563 730</a>
+      <a href="mailto:chefdenis.orders@gmail.com">chefdenis.orders@gmail.com</a>
+    </div>
+
+    <div class="footer-column">
+      <h4 data-i18n="footer.hours">Program</h4>
+      <p data-i18n="footer.hoursText">Luni - Vineri: 07:30 - 18:00</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/chef.denis.md/" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/chef_denis_kitchen/?hl=en" target="_blank">Instagram</a>
+      </div>
     </div>
   </div>
 
-  <div class="footer-bottom">
-   Acest website a fost realizat în cadrul
-competiției „Tekwill Junior Ambassadors” organizată de proiectul „Tekwill în Fiecare
-Școală” și nu reflectă neapărat opinia proiectului.
+  <div class="footer-bottom" data-i18n="footer.disclaimer">
+    Acest website a fost realizat în cadrul competiției &bdquo;Tekwill Junior Ambassadors&rdquo; organizată de proiectul &bdquo;Tekwill în Fiecare Școală&rdquo; și nu reflectă neapărat opinia proiectului.
   </div>
 </footer>
+
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    emailjs.init("euwpozbIhFNJwaNTd"); 
+    emailjs.init("euwpozbIhFNJwaNTd");
   });
 </script>
 <script src="js/javascript.js"></script>
 </body>
 </html>
+
